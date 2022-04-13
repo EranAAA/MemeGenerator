@@ -1,0 +1,14 @@
+:root {
+    /* Background*/
+    --clr1: #22252C;
+    /* Background Grid */
+    --clr2: #383B42;
+    /* Text Color Logo */
+    --clr3: #FFFFFF;
+    /* Text Color Nav */
+    --clr4: #21AC91;
+    /* Background List */
+    --clr5: #87898D;
+    /* Text Color Search */
+    --clr6: #909193;
+}
