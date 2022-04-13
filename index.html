@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+
+    <header class="main-header flex justifySpaceBtween">
+        <div class="header-logo flex center">logo</div>
+        <ul class="main-nav clean-list flex gap150 ">
+            <li class="flex center" onclick="onChangePanel('Gallery')">Gallery</li>
+            <li class="flex center" onclick="onChangePanel('Memes')">Memes</li>
+            <li class="flex center" onclick="onChangePanel('About')">About</li>
+        </ul>
+    </header>
+
+    <section class="main-section"></section>
+
+    <footer>Eran Avichzer</footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/gallery.controller.js"></script>
+    <script src="js/gallery.service.js"></script>
+
+    <script src="js/meme.controller.js"></script>
+    <script src="js/meme.service.js"></script>
+
+    <script src="js/util.service.js"></script>
+</body>
+
+</html>
