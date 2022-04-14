@@ -32,7 +32,7 @@ function renderMeme() {
     let srtHtmlCanvas = `<canvas id="my-canvas" height="535" width="535"></canvas>`
 
     elMainSection.innerHTML = `
-            <div class="main-editor flex gap50"> 
+            <div class="main-editor flex gap1vw"> 
                 <div class="canvas-container" > ${srtHtmlCanvas} </div>
                 <div class="editor-panel">
 
@@ -43,17 +43,14 @@ function renderMeme() {
                         <button onclick="onAddLine()" class="font-size-btn add">+</button>
                         <button onclick="onDeleteLine()" class="font-size-btn delete">🗑</button>
                     </div>
-                    <div class="amend-box"> 
-
-                        <div class="control-font"> 
-                            <label for="colorText"> 🎨
-                            <input oninput="onInputColor(this.value)" type="color" id="colorText" hidden value="#121212" />
-                            </label>
+             
+                        <div class="control-box"> 
+                            <input oninput="onInputColor(this.value)" type="color" id="colorText" value="#121212" class="color-btn"/>
                             <button onclick="onClickIncrease(this)" class="font-size-btn increase">A<span>+</span></button>
                             <button onclick="onClickDecrease(this)" class="font-size-btn increase">A<span>-</span></button>
                         </div>
 
-                        <div class="control-align"> 
+                        <div class="control-box"> 
                             <button onclick="onAlign('left')" class="font-size-btn align">→</button>
                             <button onclick="onAlign('right')" class="font-size-btn align">←</button>
                             <button onclick="onAlign('center')" class="font-size-btn align">↔︎</button>
@@ -65,8 +62,8 @@ function renderMeme() {
                             <option value="monospace" selected>Monospace</option>
                             <option value="Segoe UI">Segoe UI</option>
                         </select>
-                    </div>
-                    <div>
+                    
+                    <div class="btn-action" >
                         <button onclick="onShare()" class="share-btn">Share</button>
                         <a class="download-btn" onclick="onDownload(this)" href="#" download="Meme.jpg">DownLoad</a>
                     </div>
@@ -101,10 +98,11 @@ function drawImg() {
 
 function drawText(txt, x, y, align, color, size, font, idx) {
     let currIdx = getCurrLineIdx()
+    let convertToVw = size / 20
 
     gCtx.textBaseline = 'top'
     gCtx.textAlign = align
-    gCtx.font = `bold ${size}px ${font}`
+    gCtx.font = `bold ${convertToVw}vw ${font}`
     gCtx.fillStyle = color
     if (idx === currIdx) gCtx.strokeRect(x - 10, y - 5, (size / 2) * txt.length + 70, size * 1.3);
     gCtx.fill()
@@ -161,14 +159,13 @@ function getEvPos(ev) {
 }
 
 function onDown(ev) {
-
     const pos = getEvPos(ev)
+    console.log('pos', pos);
+
     if (!isLineClicked(pos)) return
 
     setLineDrag(true)
     gStartPos = pos
-
-    // document.body.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
