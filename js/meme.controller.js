@@ -4,6 +4,8 @@ let gElCanvas;
 let gCtx;
 let gStartPos
 let gPreDownload
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
+
 
 function openEditor(id) {
 
@@ -121,8 +123,7 @@ function draw() {
 
 function addListeners() {
     addMouseListeners()
-
-    //addTouchListeners()
+    addTouchListeners()
 
     window.addEventListener('resize', () => {
         resizeCanvas()
@@ -136,19 +137,26 @@ function addMouseListeners() {
     gElCanvas.addEventListener('mouseup', onUp)
 }
 
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchend', onUp)
+}
+
 function getEvPos(ev) {
     var pos = {
-            x: ev.offsetX,
-            y: ev.offsetY
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    if (gTouchEvs.includes(ev.type)) {
+        ev.preventDefault()
+        var rect = ev.target.getBoundingClientRect()
+        pos = {
+            x: ev.targetTouches[0].pageX - rect.left,
+            y: ev.targetTouches[0].pageY - rect.top,
+            movX: 50
         }
-        // if (gTouchEvs.includes(ev.type)) {
-        //     ev.preventDefault()
-        //     ev = ev.changedTouches[0]
-        //     pos = {
-        //         x: ev.pageX - ev.target.offsetLeft,
-        //         y: ev.pageY - ev.target.offsetTop
-        //     }
-        // }
+    }
     return pos
 }
 
