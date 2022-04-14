@@ -1,0 +1,41 @@
+/* HEADER */
+
+.main-header {
+    background-image: linear-gradient(-86deg, #33bd6d 0%, #0b97b9 100%);
+    margin-top: 15px;
+    border-radius: 60px;
+    height: 74px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.main-nav {
+    border-radius: 60px;
+}
+
+.main-nav>li {
+    padding: 15px;
+}
+
+.main-nav>li:hover {
+    background-color: var(--clr3);
+    font-family: poppins-light;
+    font-size: 20px;
+    color: var(--clr4);
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.clean-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+/* LOGO */
+
+.header-logo {
+    font-family: poppins-light;
+    text-transform: uppercase;
+    margin-left: 80px;
+}
