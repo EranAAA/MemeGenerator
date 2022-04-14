@@ -72,3 +72,24 @@
     cursor: pointer;
     box-shadow: 0px 2px 20px 1px;
 }
+
+
+/* MOBILE FIRST */
+
+@media (max-width: 500px) {
+    .main-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+    }
+    .img {
+        height: 22vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .main-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(16vw, 1fr));
+    }
+    .img {
+        height: 18vw;
+    }
+}

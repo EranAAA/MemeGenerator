@@ -49,6 +49,7 @@
 .textarea {
     display: block;
     width: 95%;
+    height: 3vw;
     /* position: absolute; */
     /* top: 5%; */
     overflow: hidden;
@@ -66,7 +67,7 @@
     align-items: center;
     background-color: var(--clr4);
     border-radius: 10px;
-    width: 35vw;
+    width: 25vw;
     height: 5vw;
 }
 
@@ -96,7 +97,7 @@
 }
 
 .font-select {
-    width: 35vw;
+    width: 25vw;
     height: 5vw;
     border-radius: 10px;
     font-size: 1.5vw;
@@ -192,31 +193,33 @@
 
 /* MOBILE FIRST */
 
-@media (max-width: 600px) {
-    /* body {
-        font-size: 1.0rem;
-    }
-    .font-size-btn {
-        font-size: 1.5rem;
-    } */
+@media (max-width: 500px) {
     .main-editor {
         align-items: center;
         flex-direction: column;
         justify-content: center;
     }
-    /* #my-canvas {
-        max-width: 460px;
-        display: flex;
-        justify-content: center;
+    .color-btn {
+        width: 7vw;
+        height: 7vw;
     }
-    .canvas-container {
-        max-width: 460px;
-        width: 100%;
+    .font-size-btn {
+        font-size: 4.5vw;
+        width: 7vw;
+        height: 7vw;
+        color: black;
     }
-    .editor-panel {
-        max-width: 460px;
+    .control-box {
+        width: 62vw;
+        height: 8vw;
     }
-    .editor-panel>* {
-        margin: 5px;
-    } */
+    .control-box>* {
+        filter: unset
+    }
+    .btn-action>* {
+        filter: unset
+    }
+    .btn-action {
+        filter: unset
+    }
 }
