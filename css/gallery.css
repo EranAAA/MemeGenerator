@@ -2,41 +2,43 @@
 
 .main-search {
     background-color: var(--clr2);
-    margin-top: 40px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 0;
+    margin-top: 1.5vw;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    padding-bottom: 1.5vw;
+    border-radius: 10px 10px 0 0;
+    align-items: center;
 }
 
 
 /* SEARCH PANEL */
 
 .text {
-    margin-top: 25px;
-    margin-left: 20px;
-    width: 540px;
-    height: 58px;
+    margin-top: 1.5vw;
+    margin-left: 1.5vw;
+    width: 40vw;
+    height: 5vw;
     border-radius: 29px;
     background-color: #22252c;
-    font-size: 21px;
+    font-size: 2vw;
     color: #fefefe;
     font-weight: 300;
     font-family: "poppins-light";
 }
 
 .search-keys {
-    width: 540px;
-    height: 58px;
+    margin-top: 1.5vw;
+    margin-right: 1.5vw;
+    width: 40vw;
+    height: 5vw;
     border-radius: 25px;
     background-color: var(--clr5);
     font-size: 21px;
     color: #fefefe;
     font-weight: 300;
     font-family: "poppins-light";
-    margin-top: 25px;
     margin-right: 20px;
-    padding: 10px;
-    gap: 10px;
+    gap: 1vw;
 }
 
 
@@ -44,22 +46,20 @@
 
 .main-gallery {
     background-color: var(--clr2);
-    margin-top: 0;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 0;
-    padding: 20px;
+    padding: 1vw;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    border-radius: 0 0 10px 10px;
     display: grid;
-    /* Auto fill -> Will make a new column everytime there's enough place for it. */
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 20px;
-    max-width: 1240px;
-    max-height: 470px;
     overflow-y: auto;
+    height: 450px;
+    grid-gap: 10px 10px 19px 10px;
+    grid-gap: 1vw 0vw;
+    justify-items: center;
 }
 
 .img {
-    font-size: 25px;
     background: unset;
     border-radius: 10px;
     border: unset;

@@ -21,10 +21,10 @@
     flex-direction: row;
 }
 
-.flex.gap40 {
-    gap: 40px
+.flex.gap2vw {
+    gap: 2vw;
 }
 
-.flex.gap50 {
-    gap: 50px
+.flex.gap1vw {
+    gap: 1vw
 }

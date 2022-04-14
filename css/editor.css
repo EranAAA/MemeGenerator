@@ -23,10 +23,10 @@
 /* EDITOR PANEL */
 
 .main-editor {
-    margin-top: 20px;
-    margin-left: 80px;
-    margin-right: 80px;
-    margin-bottom: 40px;
+    margin-top: 2vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-bottom: 5vw;
     justify-content: center;
 }
 
@@ -36,7 +36,6 @@
     width: 100%;
     background-color: var(--clr2);
     border-radius: 10px;
-    font-size: 50px;
     text-align: center;
     /* padding: 10px; */
     display: flex;
@@ -44,7 +43,7 @@
     justify-content: center;
     justify-content: space-evenly;
     flex-direction: column;
-    gap: 2%;
+    gap: 1vw;
 }
 
 .textarea {
@@ -54,11 +53,11 @@
     /* top: 5%; */
     overflow: hidden;
     resize: both;
-    min-height: 50px;
     line-height: 15px;
-    font-size: 20px;
+    font-size: 1.5vw;
     border-radius: 10px;
     border: unset;
+    cursor: inherit;
 }
 
 .control-box {
@@ -67,11 +66,12 @@
     align-items: center;
     background-color: var(--clr4);
     border-radius: 10px;
-    width: 100%;
-    height: 15%;
+    width: 35vw;
+    height: 5vw;
 }
 
-.amend-box {
+
+/* .amend-box {
     display: flex;
     background-color: var(--clr4);
     border-radius: 10px;
@@ -79,7 +79,7 @@
     padding: 10px;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .control-font {
     display: flex;
@@ -89,21 +89,20 @@
 }
 
 .control-align {
-    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%;
 }
 
 .font-select {
-    width: 100%;
-    height: 50px;
+    width: 35vw;
+    height: 5vw;
     border-radius: 10px;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 20px;
+    font-size: 1.5vw;
     filter: drop-shadow(0.262px 4.993px 0px rgba(92, 92, 92, 0.55));
     background-color: #ffffff;
+    cursor: grab;
 }
 
 
@@ -112,92 +111,100 @@
 .font-size-btn {
     background-color: unset;
     border: unset;
-    font-size: 2.5rem;
+    font-size: 2.5vw;
+    width: 4vw;
+    height: 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .font-size-btn span {
-    font-size: 20px;
+    font-size: 2vw;
 }
 
 .switch {
-    width: 57px;
-    height: 52px;
     border-radius: 10px;
     filter: drop-shadow(0.262px 4.993px 0px #048b97);
     background-image: linear-gradient(-38deg, #65c3db 0%, #3fb1cd 50%, #0b97bb 100%);
 }
 
 .add {
-    width: 57px;
-    height: 52px;
     border-radius: 10px;
     filter: drop-shadow(0.262px 4.993px 0px #015d33);
     background-image: linear-gradient(-38deg, #42eb5c 0%, #37b349 100%);
 }
 
 .delete {
-    width: 57px;
-    height: 52px;
     border-radius: 10px;
     filter: drop-shadow(0.262px 4.993px 0px #8c0606);
     background-image: linear-gradient(-38deg, #cf1d37 1%, #ef5036 100%);
 }
 
 .increase {
-    width: 54px;
-    height: 50px;
     border-radius: 10px;
-    filter: drop-shadow(0.262px 4.993px 0px rgba(92, 92, 92, 0.55));
-    background-color: #ffffff;
+    filter: drop-shadow(0.262px 4.993px 0px #3a4484);
+    background-image: linear-gradient(-38deg, #0d1c6b 0%, #e6e2ee 100%);
 }
 
 .align {
-    width: 54px;
-    height: 50px;
     border-radius: 10px;
     filter: drop-shadow(0.262px 4.993px 0px rgba(92, 92, 92, 0.55));
     background-color: #ffffff;
 }
 
+.color-btn {
+    width: 4vw;
+    height: 4vw;
+    border: unset;
+    padding: unset;
+}
+
+.btn-action {
+    height: 6vw;
+}
+
 .download-btn {
-    width: 212px;
-    height: 50px;
+    font-family: 'poppins-medium';
+    font-size: 1.5vw;
+    padding: 1vw;
     border-radius: 15px;
     filter: drop-shadow(0.314px 5.992px 0px #632687);
     background-color: #8f44bb;
-    font-size: 21px;
     text-decoration: none;
-    padding: 10px;
-    padding-right: 25px;
-    padding-left: 25px;
     color: var(--clr3);
 }
 
 .share-btn {
-    width: 212px;
-    height: 50px;
+    font-family: 'poppins-medium';
+    width: 11vw;
+    font-size: 1.5vw;
+    padding: 0.8vw;
     border-radius: 15px;
     color: var(--clr3);
     filter: drop-shadow(0.314px 5.992px 0px #165c9c);
+    border: unset;
     background-color: #1e7cd3;
-    font-size: 21px;
+    cursor: pointer;
 }
 
 
 /* MOBILE FIRST */
 
-@media (max-width: 1000px) {
-    body {
+@media (max-width: 600px) {
+    /* body {
         font-size: 1.0rem;
     }
     .font-size-btn {
-        font-size: 2.5rem;
-    }
+        font-size: 1.5rem;
+    } */
     .main-editor {
         align-items: center;
         flex-direction: column;
+        justify-content: center;
     }
-    #my-canvas {
+    /* #my-canvas {
         max-width: 460px;
         display: flex;
         justify-content: center;
@@ -211,5 +218,5 @@
     }
     .editor-panel>* {
         margin: 5px;
-    }
+    } */
 }
