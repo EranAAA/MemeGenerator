@@ -2,8 +2,8 @@
 
 let gElCanvas;
 let gCtx;
-var gStartPos
-
+let gStartPos
+let gPreDownload
 
 function openEditor(id) {
 
@@ -27,7 +27,7 @@ function openEditor(id) {
 function renderMeme() {
 
     let elMainSection = document.querySelector('.main-section')
-    let srtHtmlCanvas = `<canvas id="my-canvas" height="550" width="550"></canvas>`
+    let srtHtmlCanvas = `<canvas id="my-canvas" height="535" width="535"></canvas>`
 
     elMainSection.innerHTML = `
             <div class="main-editor flex gap50"> 
@@ -42,14 +42,20 @@ function renderMeme() {
                         <button onclick="onDeleteLine()" class="font-size-btn delete">🗑</button>
                     </div>
                     <div class="amend-box"> 
-                        <label for="colorText"> 🎨
-                        <input oninput="onInputColor(this.value)" type="color" id="colorText" hidden value="#121212" />
-                        </label>
-                        <button onclick="onClickIncrease(this)" class="font-size-btn increase">A<span>+</span></button>
-                        <button onclick="onClickDecrease(this)" class="font-size-btn increase">A<span>-</span></button>
-                        <button onclick="onAlign('left')" class="font-size-btn align">→</button>
-                        <button onclick="onAlign('right')" class="font-size-btn align">←</button>
-                        <button onclick="onAlign('center')" class="font-size-btn align">↔︎</button>
+
+                        <div class="control-font"> 
+                            <label for="colorText"> 🎨
+                            <input oninput="onInputColor(this.value)" type="color" id="colorText" hidden value="#121212" />
+                            </label>
+                            <button onclick="onClickIncrease(this)" class="font-size-btn increase">A<span>+</span></button>
+                            <button onclick="onClickDecrease(this)" class="font-size-btn increase">A<span>-</span></button>
+                        </div>
+
+                        <div class="control-align"> 
+                            <button onclick="onAlign('left')" class="font-size-btn align">→</button>
+                            <button onclick="onAlign('right')" class="font-size-btn align">←</button>
+                            <button onclick="onAlign('center')" class="font-size-btn align">↔︎</button>
+                        </div>
 
                         <select onchange="onChangeFont(this)" id="font" class="font-select">
                             <option value="Impact" >Impact</option>
@@ -59,9 +65,8 @@ function renderMeme() {
                         </select>
                     </div>
                     <div>
-                        <button onclick="onShare()" class="share-btn">🔗 Share</button>
-                        
-                        <a class="download-btn" onclick="onDownload(this)" href="#" download="Meme.jpg"> ⬇︎ DownLoad </a>
+                        <button onclick="onShare()" class="share-btn">Share</button>
+                        <a class="download-btn" onclick="onDownload(this)" href="#" download="Meme.jpg">DownLoad</a>
                     </div>
                 </div>
             </div>`
@@ -179,7 +184,8 @@ function onUp(ev) {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    console.log(elContainer.offsetHeight, elContainer.offsetWidth);
+        // console.log(elContainer.offsetHeight, elContainer.offsetWidth);
+
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetWidth
 }
@@ -231,11 +237,7 @@ function onChangeFont(el) {
 }
 
 function onDownload(el) {
-
-    //downloadCanvas(el.querySelector('a'))
     downloadCanvas(el)
-
-    //console.log(el.querySelector('a'));
 }
 
 function downloadCanvas(elLink) {

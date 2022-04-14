@@ -3,12 +3,15 @@
 
 function renderGallery() {
     let images = getImages()
-
+    let keys = getKeys()
     let elMainSection = document.querySelector('.main-section')
 
-    let elSearch = `<div class="main-search">   
-                    <input type="text" class="text"> 
-                    <div class="search-tips">Lorem ipsum dolor sit amet consectetur</div>
+    let elKeyWords = keys.map((key, idx) => `<span onclick="onClickKey('${idx}')" style="font-size: ${key.size}px;">${key.name}</span>`)
+
+
+    let elSearch = `<div class="main-search flex justifySpaceBtween">   
+                    <input type="text" class="text" placeholder="Serach"> 
+                    <div class="search-keys flex justifySpaceBtween center ">${elKeyWords.join('')}</div>
                 </div>`
 
     let elGallery = images.map(img =>
@@ -21,4 +24,9 @@ function renderGallery() {
 
 function onImageClick(id) {
     openEditor(id)
+}
+
+function onClickKey(idx) {
+    clickKey(idx)
+    renderGallery()
 }

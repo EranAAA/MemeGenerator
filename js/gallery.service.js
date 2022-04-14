@@ -2,6 +2,12 @@
 
 let gImgs = [];
 let gCurrImg;
+let gKeywordSearchCountMap = [
+    { name: 'Joy', size: 45 },
+    { name: 'Dog', size: 30 },
+    { name: 'Murderer', size: 15 },
+    { name: 'Baby', size: 15 }
+]
 
 _createImges()
 
@@ -25,10 +31,10 @@ function getImages() {
     return gImgs
 }
 
-// function getCurrImage() {
-//     return gCurrImg
-// }
+function getKeys() {
+    return gKeywordSearchCountMap
+}
 
-// function imageClick(elImg) {
-//     gCurrImg = elImg
-// }
+function clickKey(index) {
+    gKeywordSearchCountMap[index].size++
+}
