@@ -13,7 +13,7 @@ function onChangePanel(tab) {
 
     if (tab === 'Gallery') renderGallery()
     if (tab === 'Editor') openEditor()
-    if (tab === 'Memes') return
+    if (tab === 'Memes') renderSavedMeme()
     if (tab === 'About') return
 
     gCurrPanel = tab

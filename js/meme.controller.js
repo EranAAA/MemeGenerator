@@ -4,8 +4,8 @@ let gElCanvas;
 let gCtx;
 let gStartPos
 let gPreDownload
+let gCurrWidth
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
-
 
 function openEditor(id) {
 
@@ -66,6 +66,7 @@ function renderMeme() {
                     <div class="btn-action" >
                         <button onclick="onShare()" class="share-btn">Share</button>
                         <a class="download-btn" onclick="onDownload(this)" href="#" download="Meme.jpg">DownLoad</a>
+                        <button onclick="onSave()" class="share-btn">Save</button>
                     </div>
                 </div>
             </div>`
@@ -74,18 +75,10 @@ function renderMeme() {
     gCtx = gElCanvas.getContext('2d');
 }
 
-//<button class="download-btn" onclick="onDownload(this)"> <a href="#" download="Meme.jpg"> </a> ⬇︎ DownLoad</button>
-
 function drawImg() {
-    //let elImg = getCurrImage()
-
     let img = new Image();
     img.src = `img/imgsSquare/${getMeme().selectedImgId}.jpg`;
-
-    // Naive approach:
-    // there is a risk that image is not loaded yet and nothing will be drawn on canvas
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-    // drawLine(50, 50)
 }
 
 // function drawImg2() {
@@ -98,11 +91,10 @@ function drawImg() {
 
 function drawText(txt, x, y, align, color, size, font, idx) {
     let currIdx = getCurrLineIdx()
-    let convertToVw = size / 20
 
     gCtx.textBaseline = 'top'
     gCtx.textAlign = align
-    gCtx.font = `bold ${convertToVw}vw ${font}`
+    gCtx.font = `bold ${size}px ${font}`
     gCtx.fillStyle = color
     if (idx === currIdx) gCtx.strokeRect(x - 10, y - 5, (size / 2) * txt.length + 70, size * 1.3);
     gCtx.fill()
@@ -123,10 +115,20 @@ function addListeners() {
     addMouseListeners()
     addTouchListeners()
 
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', (v) => {
         resizeCanvas()
         draw()
     })
+
+    // visualViewport.onresize = function(ev) {
+    //     //debugger
+    //     if (ev.target.width <= gCurrWidth) {
+    //         changeSize(false)
+    //     } else if (ev.target.width > gCurrWidth) {
+    //         changeSize(true)
+    //     }
+    //     gCurrWidth = ev.target.width
+    // }
 }
 
 function addMouseListeners() {
@@ -249,4 +251,18 @@ function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL()
     elLink.href = data
     elLink.download = 'Meme.jpg'
+}
+
+function onSave() {
+    let id = getCurrImgId()
+    localStorage.setItem(id, gElCanvas.toDataURL());
+}
+
+function makeId(length = 3) {
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var txt = '';
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return 'canvas_' + txt;
 }

@@ -19,7 +19,7 @@ function _createMeme() {
             isDrag: false
         }, {
             x: 80,
-            y: 350,
+            y: 250,
             txt: 'Add Somethings',
             size: 40,
             align: 'left',
@@ -102,6 +102,13 @@ function inputColor(color) {
 function clickIncrease() {
     gMeme.lines[gMeme.selectedLineIdx].size++
 }
+
+// function changeSize(bool) {
+//     if (bool) gMeme.lines.map(line => line.size = line.size * 0.3)
+//     else if (!bool) {
+//         gMeme.lines.map(line => line.size = line.size - 0.3)
+//     }
+// }
 
 function clickDecrease() {
     gMeme.lines[gMeme.selectedLineIdx].size--
