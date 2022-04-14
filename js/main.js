@@ -8,10 +8,12 @@ function onInit() {
 }
 
 function onChangePanel(tab) {
+    console.log('in onchange panel');
     if (gCurrPanel === tab) return
 
     if (tab === 'Gallery') renderGallery()
-    if (tab === 'Memes') openEditor()
+    if (tab === 'Editor') openEditor()
+    if (tab === 'Memes') return
     if (tab === 'About') return
 
     gCurrPanel = tab
