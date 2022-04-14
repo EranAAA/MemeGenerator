@@ -50,11 +50,9 @@
     display: block;
     width: 95%;
     height: 3vw;
-    /* position: absolute; */
-    /* top: 5%; */
     overflow: hidden;
     resize: both;
-    line-height: 15px;
+    line-height: 2.5vw;
     font-size: 1.5vw;
     border-radius: 10px;
     border: unset;
@@ -70,7 +68,6 @@
     width: 25vw;
     height: 5vw;
 }
-
 
 /* .amend-box {
     display: flex;
@@ -160,6 +157,7 @@
     height: 4vw;
     border: unset;
     padding: unset;
+    border-radius: 37px;
 }
 
 .btn-action {
@@ -190,6 +188,19 @@
     cursor: pointer;
 }
 
+.save-btn {
+    font-family: 'poppins-medium';
+    width: 11vw;
+    font-size: 1.5vw;
+    padding: 0.8vw;
+    border-radius: 15px;
+    color: var(--clr3);
+    filter: drop-shadow(0.314px 5.992px 0px #43bb53);
+    border: unset;
+    background-color: #1ed34b;
+    cursor: pointer;
+}
+
 
 /* MOBILE FIRST */
 
@@ -199,26 +210,32 @@
         flex-direction: column;
         justify-content: center;
     }
+
     .color-btn {
         width: 7vw;
         height: 7vw;
     }
+
     .font-size-btn {
         font-size: 4.5vw;
         width: 7vw;
         height: 7vw;
         color: black;
     }
+
     .control-box {
         width: 62vw;
         height: 8vw;
     }
+
     .control-box>* {
         filter: unset
     }
+
     .btn-action>* {
         filter: unset
     }
+
     .btn-action {
         filter: unset
     }

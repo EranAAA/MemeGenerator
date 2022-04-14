@@ -9,18 +9,18 @@ function _createMeme() {
         selectedImgId: 5,
         selectedLineIdx: 0,
         lines: [{
-            x: 80, //200
-            y: 40, //40
-            txt: 'Your Header',
+            x: 20,
+            y: 40,
+            txt: 'Line NO1',
             size: 40,
             align: 'left',
             color: '#121212',
             font: 'monospace',
             isDrag: false
         }, {
-            x: 80,
-            y: 250,
-            txt: 'Add Somethings',
+            x: 20,
+            y: 200,
+            txt: 'Line NO2',
             size: 40,
             align: 'left',
             color: '#121212',
@@ -29,9 +29,6 @@ function _createMeme() {
         }]
     }
 }
-
-// size * txt.length = width
-// size * 1.2 = height 20% nore
 
 function createNewLine(x, y, txt, size, align, color, font) {
     gMeme.lines.push({
@@ -131,4 +128,10 @@ function switchLine() {
         return gMeme.selectedLineIdx = 0
     }
     return gMeme.selectedLineIdx++
+}
+
+function downloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'Meme.jpg'
 }

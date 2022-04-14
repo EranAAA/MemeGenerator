@@ -3,27 +3,24 @@
 let gElCanvas;
 let gCtx;
 let gStartPos
-let gPreDownload
+let gIsDownload = false
 let gCurrWidth
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 function openEditor(id) {
-
     updatePanel('Editor')
 
-    // remove later!!!
     let meme = getMeme()
     if (!id) id = meme.selectedImgId
     if (id !== meme.selectedImgId) {
         initMeme(id)
         meme.selectedImgId = id
     }
-    // remove later!!!
 
     renderMeme()
     resizeCanvas()
-    addListeners()
     draw()
+    addListeners()
 }
 
 function renderMeme() {
@@ -66,7 +63,7 @@ function renderMeme() {
                     <div class="btn-action" >
                         <button onclick="onShare()" class="share-btn">Share</button>
                         <a class="download-btn" onclick="onDownload(this)" href="#" download="Meme.jpg">DownLoad</a>
-                        <button onclick="onSave()" class="share-btn">Save</button>
+                        <button onclick="onSave()" class="save-btn">Save</button>
                     </div>
                 </div>
             </div>`
@@ -81,13 +78,13 @@ function drawImg() {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
 }
 
-// function drawImg2() {
-//     var img = new Image();
-//     img.src = 'img/1.jpg';
-//     img.onload = () => {
-//         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-//     };
-// }
+function drawImg2() {
+    let img = new Image();
+    img.src = `img/imgsSquare/${getMeme().selectedImgId}.jpg`;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    };
+}
 
 function drawText(txt, x, y, align, color, size, font, idx) {
     let currIdx = getCurrLineIdx()
@@ -96,7 +93,7 @@ function drawText(txt, x, y, align, color, size, font, idx) {
     gCtx.textAlign = align
     gCtx.font = `bold ${size}px ${font}`
     gCtx.fillStyle = color
-    if (idx === currIdx) gCtx.strokeRect(x - 10, y - 5, (size / 2) * txt.length + 70, size * 1.3);
+    if (idx === currIdx && !gIsDownload) gCtx.strokeRect(x - 10, y - 5, (size / 2) * txt.length + 70, size * 1.3);
     gCtx.fill()
     gCtx.fillText(txt, x, y);
 }
@@ -104,6 +101,7 @@ function drawText(txt, x, y, align, color, size, font, idx) {
 function draw() {
     let meme = getMeme().lines
     drawImg()
+    //drawImg2()
 
     // Do consturctor
     meme.map((line, idx) =>
@@ -120,15 +118,6 @@ function addListeners() {
         draw()
     })
 
-    // visualViewport.onresize = function(ev) {
-    //     //debugger
-    //     if (ev.target.width <= gCurrWidth) {
-    //         changeSize(false)
-    //     } else if (ev.target.width > gCurrWidth) {
-    //         changeSize(true)
-    //     }
-    //     gCurrWidth = ev.target.width
-    // }
 }
 
 function addMouseListeners() {
@@ -186,12 +175,12 @@ function onMove(ev) {
 function onUp(ev) {
     setLineDrag(false)
     draw()
-        //document.body.style.cursor = 'grab'
+    //document.body.style.cursor = 'grab'
 }
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-        // console.log(elContainer.offsetHeight, elContainer.offsetWidth);
+    // console.log(elContainer.offsetHeight, elContainer.offsetWidth);
 
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetWidth
@@ -224,7 +213,7 @@ function onSwitchLine() {
 }
 
 function onAddLine() {
-    createNewLine(200, 200, 'New Line', 40, 'left', '#ffd700', 'monospace')
+    createNewLine(100, 100, 'New Line', 40, 'left', '#0a3c16', 'monospace')
     draw()
 }
 
@@ -244,13 +233,10 @@ function onChangeFont(el) {
 }
 
 function onDownload(el) {
+    gIsDownload = true
+    draw()
     downloadCanvas(el)
-}
-
-function downloadCanvas(elLink) {
-    const data = gElCanvas.toDataURL()
-    elLink.href = data
-    elLink.download = 'Meme.jpg'
+    gIsDownload = false
 }
 
 function onSave() {
@@ -258,11 +244,3 @@ function onSave() {
     localStorage.setItem(id, gElCanvas.toDataURL());
 }
 
-function makeId(length = 3) {
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var txt = '';
-    for (var i = 0; i < length; i++) {
-        txt += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return 'canvas_' + txt;
-}

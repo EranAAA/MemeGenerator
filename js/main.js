@@ -8,7 +8,6 @@ function onInit() {
 }
 
 function onChangePanel(tab) {
-    console.log('in onchange panel');
     if (gCurrPanel === tab) return
 
     if (tab === 'Gallery') renderGallery()

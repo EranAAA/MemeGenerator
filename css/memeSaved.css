@@ -1,0 +1,19 @@
+.container-Saved {
+    position: relative;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    background-color: unset;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: unset;
+    border: unset;
+}
+
+/* .container img {
+    width: 100%;
+    height: auto;
+} */
