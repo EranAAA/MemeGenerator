@@ -35,30 +35,41 @@ function renderMeme() {
 
                 <textarea oninput="onInputText(this.value)" placeholder=" Describe yourself here..." class="textarea"></textarea>
 
-                    <div class="control-box"> 
-                        <button onclick="onSwitchLine()" class="font-size-btn switch">⇅</button>
-                        <button onclick="onAddLine()" class="font-size-btn add">+</button>
-                        <button onclick="onDeleteLine()" class="font-size-btn delete">🗑</button>
-                    </div>
-             
+                    <div class="control-all">
                         <div class="control-box"> 
+                            <button onclick="onSwitchLine()" class="font-size-btn switch">⇅</button>
+                            <button onclick="onAddLine()" class="font-size-btn add">+</button>
+                            <button onclick="onDeleteLine()" class="font-size-btn delete">🗑</button>
+                        </div>
+                
+                        <div class="change-box"> 
                             <input oninput="onInputColor(this.value)" type="color" id="colorText" value="#121212" class="color-btn"/>
                             <button onclick="onClickIncrease(this)" class="font-size-btn increase">A<span>+</span></button>
                             <button onclick="onClickDecrease(this)" class="font-size-btn increase">A<span>-</span></button>
-                        </div>
-
-                        <div class="control-box"> 
+                        
                             <button onclick="onAlign('left')" class="font-size-btn align">→</button>
                             <button onclick="onAlign('right')" class="font-size-btn align">←</button>
                             <button onclick="onAlign('center')" class="font-size-btn align">↔︎</button>
+                            <select onchange="onChangeFont(this)" id="font" class="font-select">
+                                <option value="Impact" >Impact</option>
+                                <option value="poppins-medium">Poppins Medium</option>
+                                <option value="monospace" selected>Monospace</option>
+                                <option value="Segoe UI">Segoe UI</option>
+                            </select>
                         </div>
-
-                        <select onchange="onChangeFont(this)" id="font" class="font-select">
-                            <option value="Impact" >Impact</option>
-                            <option value="poppins-medium">Poppins Medium</option>
-                            <option value="monospace" selected>Monospace</option>
-                            <option value="Segoe UI">Segoe UI</option>
-                        </select>
+                    </div>
+                    
+                    <div class="control-Carusel">
+                        <div onclick="" class="slide-btn" >˱</div>
+                        <div onclick="" class="carusel" >
+                            <div onclick="" class="" >😍</div>
+                            <div onclick="" class="" >🐶</div>
+                            <div onclick="" class="" >🍊</div>
+                            <div onclick="" class="" >⚽️</div>
+                            <div onclick="" class="" >😍</div>
+                        </div>
+                        <div onclick="" class="slide-btn" >˲</div>
+                    </div>
                     
                     <div class="btn-action" >
                         <button onclick="onShare()" class="share-btn">Share</button>
@@ -101,7 +112,7 @@ function drawText(txt, x, y, align, color, size, font, idx) {
 function draw() {
     let meme = getMeme().lines
     drawImg()
-    //drawImg2()
+        //drawImg2()
 
     // Do consturctor
     meme.map((line, idx) =>
@@ -175,12 +186,12 @@ function onMove(ev) {
 function onUp(ev) {
     setLineDrag(false)
     draw()
-    //document.body.style.cursor = 'grab'
+        //document.body.style.cursor = 'grab'
 }
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-    // console.log(elContainer.offsetHeight, elContainer.offsetWidth);
+        // console.log(elContainer.offsetHeight, elContainer.offsetWidth);
 
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetWidth
@@ -243,4 +254,3 @@ function onSave() {
     let id = getCurrImgId()
     localStorage.setItem(id, gElCanvas.toDataURL());
 }
-
