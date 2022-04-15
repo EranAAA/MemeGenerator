@@ -31,8 +31,8 @@
 }
 
 .editor-panel {
-    /* max-height: 545px; */
-    max-width: 545px;
+    max-height: 545px;
+    /* max-width: 545px; */
     width: 100%;
     background-color: var(--clr2);
     border-radius: 10px;
@@ -49,7 +49,7 @@
 .textarea {
     display: block;
     width: 95%;
-    height: 3vw;
+    height: 4vw;
     overflow: hidden;
     resize: both;
     line-height: 2.5vw;
@@ -57,17 +57,38 @@
     border-radius: 10px;
     border: unset;
     cursor: inherit;
+    margin-top: 1vw;
+}
+
+.control-all {
+    display: flex;
+    gap: 1vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
 }
 
 .control-box {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    border-radius: 10px;
+    width: 18vw;
+    height: 10vw;
+    background-color: var(--clr4);
+}
+
+.change-box {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     background-color: var(--clr4);
     border-radius: 10px;
-    width: 25vw;
-    height: 5vw;
+    width: 29vw;
+    height: 10vw;
+    flex-wrap: wrap;
+    background-color: var(--clr4);
 }
+
 
 /* .amend-box {
     display: flex;
@@ -95,7 +116,7 @@
 
 .font-select {
     width: 25vw;
-    height: 5vw;
+    height: 4vw;
     border-radius: 10px;
     font-size: 1.5vw;
     filter: drop-shadow(0.262px 4.993px 0px rgba(92, 92, 92, 0.55));
@@ -157,7 +178,7 @@
     height: 4vw;
     border: unset;
     padding: unset;
-    border-radius: 37px;
+    border-radius: 5px;
 }
 
 .btn-action {
@@ -166,7 +187,7 @@
 
 .download-btn {
     font-family: 'poppins-medium';
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     padding: 1vw;
     border-radius: 15px;
     filter: drop-shadow(0.314px 5.992px 0px #632687);
@@ -177,8 +198,8 @@
 
 .share-btn {
     font-family: 'poppins-medium';
-    width: 11vw;
-    font-size: 1.5vw;
+    width: 9vw;
+    font-size: 1.3vw;
     padding: 0.8vw;
     border-radius: 15px;
     color: var(--clr3);
@@ -190,8 +211,8 @@
 
 .save-btn {
     font-family: 'poppins-medium';
-    width: 11vw;
-    font-size: 1.5vw;
+    width: 9vw;
+    font-size: 1.3vw;
     padding: 0.8vw;
     border-radius: 15px;
     color: var(--clr3);
@@ -199,6 +220,28 @@
     border: unset;
     background-color: #1ed34b;
     cursor: pointer;
+}
+
+.control-Carusel {
+    display: flex;
+    filter: drop-shadow(0.262px 4.993px 0px rgba(92, 92, 92, 0.55));
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.carusel {
+    display: flex;
+    width: 25vw;
+    height: 5vw;
+    font-size: 3.5vw;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.slide-btn {
+    color: black;
+    font-size: 2vw;
+    width: 3vw
 }
 
 
@@ -210,33 +253,70 @@
         flex-direction: column;
         justify-content: center;
     }
-
     .color-btn {
         width: 7vw;
         height: 7vw;
     }
-
     .font-size-btn {
         font-size: 4.5vw;
         width: 7vw;
         height: 7vw;
         color: black;
     }
-
     .control-box {
-        width: 62vw;
-        height: 8vw;
+        width: 26vw;
+        height: 20vw;
     }
-
+    .change-box {
+        width: 50vw;
+        height: 20vw;
+        flex-wrap: wrap;
+    }
     .control-box>* {
         filter: unset
     }
-
     .btn-action>* {
         filter: unset
     }
-
     .btn-action {
         filter: unset
+    }
+    .font-select {
+        width: 28vw;
+        height: 6vw;
+    }
+    .textarea {
+        display: block;
+        width: 95%;
+        height: 8vw;
+        overflow: hidden;
+        resize: both;
+        line-height: 7.5vw;
+        font-size: 2.5vw;
+        border-radius: 10px;
+        border: unset;
+        cursor: inherit;
+        margin-top: 1vw;
+    }
+    .carusel {
+        display: flex;
+        width: 70vw;
+        height: 8vw;
+        font-size: 6.5vw;
+    }
+    .slide-btn {
+        font-size: 3vw;
+        width: 4vw;
+    }
+    .share-btn {
+        width: 18vw;
+        font-size: 2.3vw;
+    }
+    .save-btn {
+        width: 18vw;
+        font-size: 2.3vw;
+    }
+    .download-btn {
+        font-size: 2.3vw;
     }
 }
