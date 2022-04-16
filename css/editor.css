@@ -24,8 +24,8 @@
 
 .main-editor {
     margin-top: 2vw;
-    margin-left: 10vw;
-    margin-right: 10vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
     margin-bottom: 5vw;
     justify-content: center;
 }
@@ -183,6 +183,9 @@
 
 .btn-action {
     height: 6vw;
+    gap: 1vw;
+    display: flex;
+    align-items: center;
 }
 
 .download-btn {
@@ -241,7 +244,12 @@
 .slide-btn {
     color: black;
     font-size: 2vw;
-    width: 3vw
+    width: 3vw;
+    cursor: pointer;
+}
+
+.stickers {
+    cursor: pointer;
 }
 
 
@@ -253,38 +261,51 @@
         flex-direction: column;
         justify-content: center;
     }
+
     .color-btn {
         width: 7vw;
         height: 7vw;
     }
+
     .font-size-btn {
         font-size: 4.5vw;
         width: 7vw;
         height: 7vw;
         color: black;
     }
+
     .control-box {
         width: 26vw;
         height: 20vw;
     }
+
     .change-box {
         width: 50vw;
         height: 20vw;
         flex-wrap: wrap;
     }
+
     .control-box>* {
         filter: unset
     }
+
     .btn-action>* {
         filter: unset
     }
+
     .btn-action {
         filter: unset
     }
+
+    .save-btn {
+        filter: unset
+    }
+
     .font-select {
         width: 28vw;
         height: 6vw;
     }
+
     .textarea {
         display: block;
         width: 95%;
@@ -298,24 +319,29 @@
         cursor: inherit;
         margin-top: 1vw;
     }
+
     .carusel {
         display: flex;
         width: 70vw;
         height: 8vw;
         font-size: 6.5vw;
     }
+
     .slide-btn {
         font-size: 3vw;
         width: 4vw;
     }
+
     .share-btn {
         width: 18vw;
         font-size: 2.3vw;
     }
+
     .save-btn {
         width: 18vw;
         font-size: 2.3vw;
     }
+
     .download-btn {
         font-size: 2.3vw;
     }

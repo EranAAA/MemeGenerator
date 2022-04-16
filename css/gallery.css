@@ -20,7 +20,7 @@
     height: 5vw;
     border-radius: 29px;
     background-color: #22252c;
-    font-size: 2vw;
+    font-size: 1.5vw;
     color: #fefefe;
     font-weight: 300;
     font-family: "poppins-light";
@@ -39,6 +39,13 @@
     font-family: "poppins-light";
     margin-right: 20px;
     gap: 1vw;
+    flex-wrap: wrap;
+}
+
+.file-input {
+    padding: 1vw 2vw;
+    cursor: pointer;
+    margin-top: 1.5vw;
 }
 
 
