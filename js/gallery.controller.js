@@ -17,7 +17,7 @@ function renderGallery() {
 
     let elSearch = `<div class="main-search flex justifySpaceBtween">   
                         <select onchange="onFilter(this)" id="filter" class="text">
-                                <option value="All" selected>Search for Key words</option>
+                                <option value="All" selected>Filter by Key words</option>
                                 <option value="All">All</option>
                                 <option value="Strong" >Strong</option>
                                 <option value="Baby">Baby</option>
