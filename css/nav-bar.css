@@ -4,7 +4,7 @@
     background-image: linear-gradient(-86deg, #33bd6d 0%, #0b97b9 100%);
     margin: 1vw;
     border-radius: 60px;
-    height: 6vw;
+    height: 70px;
     padding: 1vw;
     align-items: center
 }
@@ -40,3 +40,25 @@
     text-transform: uppercase;
     margin-left: 5vw;
 }
+
+
+/* DESKTOP FIRST */
+
+
+/* @media (max-width: 800px) {
+    .main-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+    }
+    .img {
+        height: 23vw;
+    }
+}
+
+@media (max-width: 500px) {
+    .main-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(32vw, 1fr));
+    }
+    .img {
+        height: 44vw;
+    }
+} */

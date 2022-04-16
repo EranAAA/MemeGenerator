@@ -14,7 +14,7 @@ body {
     /* max-width: 1280px;
     max-height: 680px; */
     margin: 0;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 
@@ -24,4 +24,19 @@ footer {
     padding-top: 0.5vw;
     text-align: center;
     font-size: 2vw;
+}
+
+
+/* DESKTOP FIRST */
+
+@media (max-width: 800px) {
+    body {
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        font-size: 3vw;
+    }
 }

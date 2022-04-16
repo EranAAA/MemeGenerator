@@ -24,8 +24,8 @@
 
 .main-editor {
     margin-top: 2vw;
-    margin-left: 5vw;
-    margin-right: 5vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
     margin-bottom: 5vw;
     justify-content: center;
 }
@@ -256,6 +256,9 @@
 /* DESKTOP FIRST */
 
 @media (max-width: 500px) {
+    .editor-panel {
+        gap: 3vw;
+    }
     .main-editor {
         align-items: center;
         flex-direction: column;
@@ -278,7 +281,8 @@
     }
     .control-box {
         width: 27vw;
-        height: 17vw;
+        height: 10vw;
+        background-color: unset;
     }
     .change-box {
         width: 50vw;
@@ -289,18 +293,20 @@
         filter: unset
     }
     .btn-action>* {
-        filter: unset
+        filter: unset;
+        font-size: 3.3vw;
     }
     .btn-action {
         height: 10vw;
         filter: unset
     }
     .save-btn {
-        filter: unset
+        filter: unset;
     }
     .font-select {
         width: 40vw;
         height: 6vw;
+        font-size: 2.5vw;
     }
     .textarea {
         display: block;
@@ -309,7 +315,7 @@
         overflow: hidden;
         resize: both;
         line-height: 7.5vw;
-        font-size: 2.5vw;
+        font-size: 3.5vw;
         border-radius: 10px;
         border: unset;
         cursor: inherit;
@@ -335,5 +341,8 @@
     }
     .download-btn {
         font-size: 2.3vw;
+    }
+    footer {
+        font-size: 4vw;
     }
 }
