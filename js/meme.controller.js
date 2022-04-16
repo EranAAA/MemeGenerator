@@ -10,11 +10,10 @@ const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 function openEditor(id) {
     updatePanel('Editor')
 
-    let meme = getMeme()
-    if (!id) id = meme.selectedImgId
-    if (id !== meme.selectedImgId) {
+    if (!id) id = getMeme().selectedImgId
+    if (id !== getMeme().selectedImgId) {
         initMeme(id)
-        meme.selectedImgId = id
+        getMeme().selectedImgId = id
     }
 
     renderMeme()
@@ -27,6 +26,9 @@ function renderMeme() {
 
     let elMainSection = document.querySelector('.main-section')
     let srtHtmlCanvas = `<canvas id="my-canvas" height="535" width="535"></canvas>`
+
+    let stickers = getStickers()
+    let srtHtmlStickers = stickers.map(sticker => `<div onclick="onClickSticker('${sticker}')" class="stickers" >${sticker}</div>`)
 
     elMainSection.innerHTML = `
             <div class="main-editor flex gap1vw"> 
@@ -60,19 +62,15 @@ function renderMeme() {
                     </div>
                     
                     <div class="control-Carusel">
-                        <div onclick="" class="slide-btn" >˱</div>
-                        <div onclick="" class="carusel" >
-                            <div onclick="" class="" >😍</div>
-                            <div onclick="" class="" >🐶</div>
-                            <div onclick="" class="" >🍊</div>
-                            <div onclick="" class="" >⚽️</div>
-                            <div onclick="" class="" >😍</div>
+                        <div onclick="onNextStickers(-1)" class="slide-btn" >˱</div>
+                        <div class="carusel" >
+                            ${srtHtmlStickers.join('')}
                         </div>
-                        <div onclick="" class="slide-btn" >˲</div>
+                        <div onclick="onNextStickers(1)" class="slide-btn" >˲</div>
                     </div>
                     
                     <div class="btn-action" >
-                        <button onclick="onShare()" class="share-btn">Share</button>
+                        <button onclick="uploadImg()" class="share-btn">Share</button>
                         <a class="download-btn" onclick="onDownload(this)" href="#" download="Meme.jpg">DownLoad</a>
                         <button onclick="onSave()" class="save-btn">Save</button>
                     </div>
@@ -85,8 +83,18 @@ function renderMeme() {
 
 function drawImg() {
     let img = new Image();
-    img.src = `img/imgsSquare/${getMeme().selectedImgId}.jpg`;
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    let status = getStatusWhereToLoad()
+    let imgIdMeme = getIdFromMeme()
+    let imgFormMeme = localStorage.getItem(imgIdMeme)
+
+    if (!status) {
+        img.src = `img/imgsSquare/${getMeme().selectedImgId}.jpg`
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    } else {
+        img.src = imgFormMeme
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    }
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
 function drawImg2() {
@@ -101,7 +109,7 @@ function drawText(txt, x, y, align, color, size, font, idx) {
     let currIdx = getCurrLineIdx()
 
     gCtx.textBaseline = 'top'
-    gCtx.textAlign = align
+        //gCtx.textAlign = align
     gCtx.font = `bold ${size}px ${font}`
     gCtx.fillStyle = color
     if (idx === currIdx && !gIsDownload) gCtx.strokeRect(x - 10, y - 5, (size / 2) * txt.length + 70, size * 1.3);
@@ -112,12 +120,11 @@ function drawText(txt, x, y, align, color, size, font, idx) {
 function draw() {
     let meme = getMeme().lines
     drawImg()
-        //drawImg2()
 
-    // Do consturctor
-    meme.map((line, idx) =>
+    meme.map((line, idx) => {
         drawText(line.txt, line.x, line.y, line.align, line.color, line.size, line.font, idx)
-    )
+        line.width = (line.size / 2) * line.txt.length + 70
+    })
 }
 
 function addListeners() {
@@ -125,10 +132,10 @@ function addListeners() {
     addTouchListeners()
 
     window.addEventListener('resize', (v) => {
+        if (gCurrPanel === 'Gallery') return
         resizeCanvas()
         draw()
     })
-
 }
 
 function addMouseListeners() {
@@ -162,7 +169,6 @@ function getEvPos(ev) {
 
 function onDown(ev) {
     const pos = getEvPos(ev)
-    console.log('pos', pos);
 
     if (!isLineClicked(pos)) return
 
@@ -172,7 +178,6 @@ function onDown(ev) {
 
 function onMove(ev) {
     if (!getDragStatus()) return
-    console.log('Moving')
 
     const pos = getEvPos(ev)
     const dx = pos.x - gStartPos.x
@@ -191,7 +196,6 @@ function onUp(ev) {
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
-        // console.log(elContainer.offsetHeight, elContainer.offsetWidth);
 
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetWidth
@@ -224,12 +228,12 @@ function onSwitchLine() {
 }
 
 function onAddLine() {
-    createNewLine(100, 100, 'New Line', 40, 'left', '#0a3c16', 'monospace')
+    createNewLine(gElCanvas.width / 2 - 70, gElCanvas.width / 2 - 70, 'New Line', 40, 'left', '#0a3c16', 'monospace')
     draw()
 }
 
 function onAlign(alignment) {
-    alignText(alignment)
+    alignText(alignment, gElCanvas)
     draw()
 }
 
@@ -251,6 +255,24 @@ function onDownload(el) {
 }
 
 function onSave() {
-    let id = getCurrImgId()
-    localStorage.setItem(id, gElCanvas.toDataURL());
+    //let id = getCurrImgId()
+    localStorage.setItem(makeId(), gElCanvas.toDataURL());
+}
+
+function onClickSticker(sticker) {
+    createNewLine(gElCanvas.width / 2, gElCanvas.width / 2, sticker, 40, 'left', '#0a3c16', 'monospace')
+    draw()
+}
+
+function onNextStickers(num) {
+    // debugger
+    nextStickers(num)
+    renderStickers()
+}
+
+function renderStickers() {
+    let elMainSection = document.querySelector('.carusel')
+    let stickers = getStickers()
+    let srtHtmlStickers = stickers.map(sticker => `<div onclick="onClickSticker('${sticker}')" class="stickers" >${sticker}</div>`)
+    elMainSection.innerHTML = srtHtmlStickers.join('')
 }

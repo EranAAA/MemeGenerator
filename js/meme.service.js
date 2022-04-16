@@ -1,12 +1,16 @@
 'use strict'
 
 let gMeme;
+let gStickers;
+const gBatchOfStickers = 5
+let gCurrPageStickers = 0
 
 _createMeme()
+_createStickers()
 
 function _createMeme() {
     gMeme = {
-        selectedImgId: 5,
+        selectedImgId: 3,
         selectedLineIdx: 0,
         lines: [{
             x: 20,
@@ -16,7 +20,8 @@ function _createMeme() {
             align: 'left',
             color: '#121212',
             font: 'monospace',
-            isDrag: false
+            isDrag: false,
+            widthLine: 0
         }, {
             x: 20,
             y: 200,
@@ -25,9 +30,14 @@ function _createMeme() {
             align: 'left',
             color: '#121212',
             font: 'monospace',
-            isDrag: false
+            isDrag: false,
+            widthLine: 0
         }]
     }
+}
+
+function _createStickers() {
+    gStickers = ['😀', '😂', '😍', '🤬', '🥶', '🤢', '👺', '😹', '👻', '👽', '💩', '🤡', '🙌', '🫶', '👍', '🤟', '👌', '👏']
 }
 
 function createNewLine(x, y, txt, size, align, color, font) {
@@ -39,8 +49,19 @@ function createNewLine(x, y, txt, size, align, color, font) {
         align,
         color,
         font,
-        isDrag: false
+        isDrag: false,
+        widthLine: 0
     })
+}
+
+function getStickers() {
+    return gStickers.slice(gCurrPageStickers, gCurrPageStickers + gBatchOfStickers)
+}
+
+function nextStickers(num) {
+    gCurrPageStickers += num
+    if ((gCurrPageStickers) < 0) return gCurrPageStickers = 0
+    if ((gStickers.length - gBatchOfStickers + 1) === gCurrPageStickers) return gCurrPageStickers--
 }
 
 function getMeme() {
@@ -63,7 +84,7 @@ function getCurrLineIdx() {
 function isLineClicked(clickedPos) {
     let isTrue = false
     gMeme.lines.some((line, idx) => {
-        const { x, y, txt, size } = line
+        let { x, y, txt, size, } = line
         let widthX = (size / 2) * txt.length + x + 60
         if ((clickedPos.x <= widthX && clickedPos.x >= x) &&
             (clickedPos.y <= size * 1.2 + y && clickedPos.y >= y)) {
@@ -100,19 +121,19 @@ function clickIncrease() {
     gMeme.lines[gMeme.selectedLineIdx].size++
 }
 
-// function changeSize(bool) {
-//     if (bool) gMeme.lines.map(line => line.size = line.size * 0.3)
-//     else if (!bool) {
-//         gMeme.lines.map(line => line.size = line.size - 0.3)
-//     }
-// }
-
 function clickDecrease() {
     gMeme.lines[gMeme.selectedLineIdx].size--
 }
 
-function alignText(alignment) {
+function alignText(alignment, gElCanvas) {
     gMeme.lines[gMeme.selectedLineIdx].align = alignment
+    if (alignment === 'left') {
+        gMeme.lines[gMeme.selectedLineIdx].x = 0
+    } else if (alignment === 'center') {
+        gMeme.lines[gMeme.selectedLineIdx].x = gElCanvas.width / 2 - (gMeme.lines[gMeme.selectedLineIdx].width / 2)
+    } else if (alignment === 'right') {
+        gMeme.lines[gMeme.selectedLineIdx].x = gElCanvas.width - gMeme.lines[gMeme.selectedLineIdx].width
+    }
 }
 
 function deleteLine() {
