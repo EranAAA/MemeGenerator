@@ -253,13 +253,18 @@
 }
 
 
-/* MOBILE FIRST */
+/* DESKTOP FIRST */
 
 @media (max-width: 500px) {
     .main-editor {
         align-items: center;
         flex-direction: column;
         justify-content: center;
+    }
+    .control-all {
+        flex-direction: column;
+        align-items: center;
+        gap: 1vw;
     }
     .color-btn {
         width: 7vw;
@@ -272,8 +277,8 @@
         color: black;
     }
     .control-box {
-        width: 20vw;
-        height: 20vw;
+        width: 27vw;
+        height: 17vw;
     }
     .change-box {
         width: 50vw;
@@ -287,13 +292,14 @@
         filter: unset
     }
     .btn-action {
+        height: 10vw;
         filter: unset
     }
     .save-btn {
         filter: unset
     }
     .font-select {
-        width: 28vw;
+        width: 40vw;
         height: 6vw;
     }
     .textarea {

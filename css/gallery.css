@@ -16,7 +16,7 @@
 .text {
     margin-top: 1.5vw;
     margin-left: 1.5vw;
-    width: 40vw;
+    width: 30vw;
     height: 5vw;
     border-radius: 29px;
     background-color: #22252c;
@@ -46,6 +46,8 @@
     padding: 1vw 2vw;
     cursor: pointer;
     margin-top: 1.5vw;
+    width: 24vw;
+    font-size: 1.6vw;
 }
 
 
