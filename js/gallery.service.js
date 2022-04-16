@@ -4,10 +4,10 @@ let gImgs = [];
 let gCurrImg;
 let gKeywordSearchCountMap = [
     { name: 'All', size: 1 }, //45
-    { name: 'Man', size: 1 }, //45
+    { name: 'Man', size: 1.5 }, //45
     { name: 'Dog', size: 1 }, //30
-    { name: 'Strong', size: 1 }, //15
-    { name: 'Baby', size: 1 }, //15
+    { name: 'Strong', size: 1.5 }, //15
+    { name: 'Baby', size: 1.5 }, //15
     { name: 'Sweet', size: 1 }, //15
     { name: 'Movies', size: 1 }, //15
     { name: 'Toys', size: 1 } //15
